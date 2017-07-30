@@ -14,6 +14,8 @@ fi
 
 #Find the directory that the script is being run from 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+#Set path variables
 R17PATH="/Applications/MAXON/CINEMA\ 4D\ R17"
 R18PATH="/Applications/MAXON/CINEMA\ 4D\ R18"
 CGPATH="/Applications/ChaosGroup"
