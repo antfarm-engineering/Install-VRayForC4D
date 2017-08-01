@@ -16,9 +16,10 @@ fi
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #Set path variables
-R17PATH="/Applications/MAXON/CINEMA\ 4D\ R17"
-R18PATH="/Applications/MAXON/CINEMA\ 4D\ R18"
+R17PATH="/Applications/MAXON/CINEMA 4D R17"
+R18PATH="/Applications/MAXON/CINEMA 4D R18"
 CGPATH="/Applications/ChaosGroup"
+CGBPATH="/Applications/ChaosGroup/bin"
 HOSTNAME=$(hostname)
 
 #Verify that the user wants to overwrite files
@@ -31,12 +32,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	if	[[ $REPLY == 1 ]]; then
 		#Check if R17 is installed - if not move to R18
 		if [ -d "$R17PATH" ]; then  
-			cp -R $DIR/C4DR17-C4DR17App-Contents-MacOS /Applications/MAXON/CINEMA4D\ R17/CINEMA4D\ R17.app/Contents/MacOS/
-			cp -R $DIR/Library-MatPreviews/* /Applications/MAXON/CINEMA4D\ R17/library/materialpreviews
-			printf "Changing R17 Permissions\n"
-			chmod -R 755 /Applications/MAXON/CINEMA4D\ R17/CINEMA4D\ R17.app/Contents/MacOS/lib*
-			chmod -R 755 /Applications/MAXON/CINEMA4D\ R17/CINEMA4D\ R17.app/Contents/MacOS/vray_stuff.dylib
-			chmod -R 755 /Applications/MAXON/CINEMA4D\ R17/library/materialpreviews
+			cp -R $DIR/C4DR17-C4DR17App-Contents-MacOS/* /Applications/MAXON/CINEMA\ 4D\ R17/CINEMA\ 4D.app/Contents/MacOS/
+			cp -R $DIR/Library-MatPreviews/* /Applications/MAXON/CINEMA\ 4D\ R17/library/materialpreview/
+			cp -R $DIR/C4DR17-plugins/* /Applications/MAXON/CINEMA\ 4D\ R17/plugins/
+			chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R17/CINEMA\ 4D.app/Contents/MacOS/lib*
+			chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R17/CINEMA\ 4D.app/Contents/MacOS/vray_stuff.dylib
+			chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R17/library/materialpreview/*
+			chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R17/plugins/VrayBridge/			
+			printf "Solo R17 installed.\n"
 		else
 			printf "Cinema 4D R17 folder not detected\n"
 			:
@@ -44,11 +47,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	elif [[ $REPLY == 2 ]]; then
 		#Check if R18 is installed - if not move to exit
 		if [ -d "$R18PATH" ]; then  
-			cp -R $DIR/C4DR18-C4DR18App-Contents-MacOS /Applications/MAXON/CINEMA4D\ R18/CINEMA4D\ R18.app/Contents/MacOS/
-			cp -R $DIR/Library-MatPreviews/* /Applications/MAXON/CINEMA4D\ R18/library/materialpreviews
-			chmod -R 755 /Applications/MAXON/CINEMA4D\ R18/CINEMA4D\ R18.app/Contents/MacOS/lib*
-			chmod -R 755 /Applications/MAXON/CINEMA4D\ R18/CINEMA4D\ R18.app/Contents/MacOS/vray_stuff.dylib
-			chmod -R 755 /Applications/MAXON/CINEMA4D\ R18/library/materialpreviews
+			cp -R $DIR/C4DR18-C4DR18App-Contents-MacOS/* /Applications/MAXON/CINEMA\ 4D\ R18/CINEMA\ 4D.app/Contents/MacOS/
+			cp -R $DIR/Library-MatPreviews/* /Applications/MAXON/CINEMA\ 4D\ R18/library/materialpreview/
+			cp -R $DIR/C4DR18-plugins/* /Applications/MAXON/CINEMA\ 4D\ R18/plugins/
+			chmod -R 755 /Applications/MAXON/CINEMA4D\ R18/CINEMA\ 4D.app/Contents/MacOS/lib*
+			chmod -R 755 /Applications/MAXON/CINEMA4D\ R18/CINEMA\ 4D.app/Contents/MacOS/vray_stuff.dylib
+			chmod -R 755 /Applications/MAXON/CINEMA4D\ R18/library/materialpreview/*
+			chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R18/plugins/VrayBridge/			
+			printf "Solo R18 installed.\n"
 		else
 			printf "Cinema 4D R18 folder not detected\n"
 			:
@@ -60,23 +66,28 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 		else
 			#Check if R17 is installed - if not move to R18
 			if [ -d "$R17PATH" ]; then  
-				cp -R $DIR/C4DR17-C4DR17App-Contents-MacOS /Applications/MAXON/CINEMA4D\ R17/CINEMA4D\ R17.app/Contents/MacOS/
-				cp -R $DIR/Library-MatPreviews/* /Applications/MAXON/CINEMA4D\ R17/library/materialpreviews
-				printf "Changing R17 Permissions\n"
-				chmod -R 755 /Applications/MAXON/CINEMA4D\ R17/CINEMA4D\ R17.app/Contents/MacOS/lib*
-				chmod -R 755 /Applications/MAXON/CINEMA4D\ R17/CINEMA4D\ R17.app/Contents/MacOS/vray_stuff.dylib
-				chmod -R 755 /Applications/MAXON/CINEMA4D\ R17/library/materialpreviews
+				cp -R $DIR/C4DR17-C4DR17App-Contents-MacOS/* /Applications/MAXON/CINEMA\ 4D\ R17/CINEMA\ 4D.app/Contents/MacOS/
+				cp -R $DIR/Library-MatPreviews/* /Applications/MAXON/CINEMA\ 4D\ R17/library/materialpreview/
+				cp -R $DIR/C4DR17-plugins/* /Applications/MAXON/CINEMA\ 4D\ R17/plugins/
+				chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R17/CINEMA\ 4D.app/Contents/MacOS/lib*
+				chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R17/CINEMA\ 4D.app/Contents/MacOS/vray_stuff.dylib
+				chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R17/library/materialpreview/*
+				chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R17/plugins/VrayBridge/			
+				printf "Combo part 1 - R17 Installed\n"
 			else
 				printf "Cinema 4D R17 folder not detected\n"
 				:
 			fi
 			#Check if R18 is installed - if not move to exit
 			if [ -d "$R18PATH" ]; then  
-				cp -R $DIR/C4DR18-C4DR18App-Contents-MacOS /Applications/MAXON/CINEMA4D\ R18/CINEMA4D\ R18.app/Contents/MacOS/
-				cp -R $DIR/Library-MatPreviews/* /Applications/MAXON/CINEMA4D\ R18/library/materialpreviews
-				chmod -R 755 /Applications/MAXON/CINEMA4D\ R18/CINEMA4D\ R18.app/Contents/MacOS/lib*
-				chmod -R 755 /Applications/MAXON/CINEMA4D\ R18/CINEMA4D\ R18.app/Contents/MacOS/vray_stuff.dylib
-				chmod -R 755 /Applications/MAXON/CINEMA4D\ R18/library/materialpreviews
+				cp -R $DIR/C4DR18-C4DR18App-Contents-MacOS/* /Applications/MAXON/CINEMA\ 4D\ R18/CINEMA\ 4D.app/Contents/MacOS/
+				cp -R $DIR/Library-MatPreviews/* /Applications/MAXON/CINEMA\ 4D\ R18/library/materialpreview/
+				cp -R $DIR/C4DR18-plugins/* /Applications/MAXON/CINEMA\ 4D\ R18/plugins/
+				chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R18/CINEMA\ 4D.app/Contents/MacOS/lib*
+				chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R18/CINEMA\ 4D.app/Contents/MacOS/vray_stuff.dylib
+				chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R18/library/materialpreview/*
+				chmod -R 755 /Applications/MAXON/CINEMA\ 4D\ R18/plugins/VrayBridge/			
+				printf "Combo part 2 - C4D R18 Installed\n"
 			else
 				printf "Cinema 4D R18 folder not detected\n"
 				:
@@ -85,13 +96,18 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	fi
 	#Check if Chaos Group stuff is installed - if not create Chaos Group directory and copy files
 	if [ -d "$CGPATH" ]; then 
-		cp -R $DIR/Applications-ChaosGroup /Applications/ChaosGroup/
-		chmod -R 755 /Applications/ChaosGroup/bin
+		if [ -d "$CGBPATH" ]; then
+			printf "Vray for C4D bin folder already exists. Skipping step.\n"
+			:
+		else
+			cp -R $DIR/Applications-ChaosGroup/* /Applications/ChaosGroup/
+			chmod -R 755 /Applications/ChaosGroup/bin
+		fi
 	else
 		printf "Maya/Max Chaos Group plugins not detected - creating Chaos Group folder\n"
 		mkdir /Applications/ChaosGroup
 		chmod 755 /Applications/ChaosGroup
-		cp -R $DIR/Applications-ChaosGroup /Applications/ChaosGroup/
+		cp -R $DIR/Applications-ChaosGroup/* /Applications/ChaosGroup/
 		chmod -R 755 /Applications/ChaosGroup/bin
 	fi
 fi
